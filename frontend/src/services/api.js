@@ -43,18 +43,14 @@ const errorInterceptor = error => {
             
             console.log(error.response)
             if (error.response.config.url !== 'login') {
-                //const authStore = useAuthStore();
-                //authStore.clearAuthData();
-    
-                sendAlert('errola', 'messagola', 'warning', 4000)
+                sendAlert('Unauthorized!', ['Something went wrong with your browser data. Please, login again.'], 'warning', 6000)
                 router.push({ name: 'logout' });
             }
 
             break;
         case 403:
-
-              sendAlert('Acesso negado!', 'Conteúdo indísponivel para seu usuário. Verifique suas permissões de acesso.', 'warning', 7000)
-              router.push({ name: 'home' }) 
+              sendAlert('Access Denied!', ['You do not have permission to access this page.'], 'warning')
+              router.push({ name: 'index' }) 
             break;
         case 404:
             // router.push({ name: 'erro404'});

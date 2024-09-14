@@ -22,7 +22,7 @@ export const handleError = {
         
                 case 403:                      
                     sendAlert('Acesso negado', 'Conteúdo indísponivel para seu usuário. Verifique suas permissões de acesso.', 'warning', 6000)
-                    router.push({ name: 'home' }) 
+                    router.push({ name: 'index' }) 
 
                     break;
                 case 404:

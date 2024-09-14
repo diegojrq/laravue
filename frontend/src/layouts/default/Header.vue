@@ -4,7 +4,11 @@
       color="primary"
       prominent
     >
-      <v-toolbar-title>MyStats</v-toolbar-title>
+      <v-toolbar-title>
+        <p>asas</p>
+        <p>asas</p>
+      </v-toolbar-title>
+      <h1>asd</h1>
     </v-app-bar>   
   </v-card>
     

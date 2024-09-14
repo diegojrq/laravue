@@ -3,7 +3,9 @@
     <div :class="['alert-card', 'alert-card-' + currentAlert.type]">
       <div :aria-label="[currentAlert.title, ' ', currentAlert.message]" role="alert">
         <h3 v-if="currentAlert.title !== ''">{{ currentAlert.title }}</h3>
-        <span v-if="currentAlert.message !== ''">&nbsp;{{ currentAlert.message }}</span>
+        <div v-if="currentAlert.message">
+          <p v-for="message in currentAlert.message">{{ message }}</p>
+        </div>        
       </div>
     </div>
   </div>  
@@ -58,7 +60,7 @@ export default defineComponent({
 
 .alert-fixed-div {
   position: fixed;
-  top: 20px;
+  top: 80px;
   right: 20px;
   z-index: 1000;
 }

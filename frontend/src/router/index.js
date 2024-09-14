@@ -5,8 +5,23 @@ import { useAuthStore } from '@/stores/auth'
 const routes = [
   {
     path: '/',
-    component: () => import('@/layouts/Default/Default.vue'),
-
+    component: () => import('@/layouts/login/Login.vue'),
+    
+    children: [
+      {
+        path: '',
+        name: 'index',
+        meta: {
+          requiresAuth: false,
+        },
+        component: () => import('@/views/Index.vue'),
+      },
+    ],
+  },
+  {
+    path: '/home',
+    component: () => import('@/layouts/default/Default.vue'),
+    
     children: [
       {
         path: '',
@@ -15,19 +30,6 @@ const routes = [
           requiresAuth: true,
         },
         component: () => import('@/views/Home.vue'),
-      },
-      {
-        path: '/logout',
-        children: [
-          {
-            path: '',
-            name: 'logout',
-            meta: {
-              requiresAuth: true,
-            },
-            component: () => import('@/views/auth/Login.vue'),
-          },
-        ],
       },
     ],
   },
@@ -45,22 +47,7 @@ const routes = [
         component: () => import('@/views/auth/Register.vue'),
       },
     ],
-  },
-  {
-    path: '/login',
-    component: () => import('@/layouts/login/Login.vue'),
-    
-    children: [
-      {
-        path: '',
-        name: 'login',
-        meta: {
-          requiresAuth: false,
-        },
-        component: () => import('@/views/auth/Login.vue'),
-      },
-    ],
-  },
+  },  
   {
     path: '/logout',
     component: () => import('@/layouts/default/Default.vue'),
@@ -113,19 +100,24 @@ export const router = createRouter({
 
 router.beforeEach((to) => {
 
+  const authStore = useAuthStore();
+
   // url inválida
   if (to.matched.length === 0) {
-    sendAlert('Página não encontrada!', 'A página que tentou acessar não existe! Verifique a URL acessada e tente novamente. ', 'warning')
-    return { name: 'home' }
+    
+    sendAlert('Page not found!', ['The page you are trying to access does not exist.'], 'warning')
+    if (!authStore.isAuthenticated()) {
+      return { name: 'index' }
+    } else {
+      return { name: 'home' }
+    }
   }
 
   // verificar se a rota requer autenticação
   if (to.meta.requiresAuth) {
-    const authStore = useAuthStore();
-
     if (!authStore.isAuthenticated()) {
-      sendAlert('Acesso negado!', 'É necessário realizar o login para acessar este conteúdo.', 'warning')
-      return { name: 'login' }
+      sendAlert('Access Denied!', ['You must be logged in to access this page.'], 'warning')
+      return { name: 'index' }
     }
   }
 

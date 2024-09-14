@@ -22,9 +22,34 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'max:255'],
+            'name' => ['required', 'max:255', 'min:3'],
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'min:8', 'confirmed'],
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'Name is required',
+            'name.min' => 'Name is tooooooo short',
+            'name.max' => 'Name is toooo long',
+            'email.required' => 'Email is required',
+            'email.email' => 'Email is invalid',
+            'email.unique' => 'Email is already taken aooa',
+            'password.required' => 'Password is required',
+            'password.confirmed' => 'Passwords do not match'
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'name' => 'Name',
+            'email' => 'Email',
+            'password' => 'Password',
+        ];
+    }
+
+    
 }

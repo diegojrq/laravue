@@ -4,3 +4,12 @@
   font-weight: 400;
 }
 
+.flash-message {
+  padding-left: 1rem;
+  margin-bottom: 1rem;  
+  border-radius: 0.25rem;
+}
+
+.input-danger {
+  border-color: red !important;
+}

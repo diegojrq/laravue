@@ -49,7 +49,7 @@ class User extends Authenticatable
     public static function rules(): array
     {
         return [
-            'name' => 'required|max:250',
+            'name' => 'required|min:3|max:5',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed'
         ];
@@ -59,7 +59,8 @@ class User extends Authenticatable
     {
         return [
             'name.required' => 'Name is required',
-            'name.max' => 'Name is long',
+            'name.min' => 'Name is too short',
+            'name.max' => 'Name is too long',
             'email.required' => 'Email is required',
             'email.email' => 'Email is invalid',
             'email.unique' => 'Email is already taken aooa',

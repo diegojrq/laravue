@@ -6,23 +6,23 @@ export const useAuthStore = defineStore({
 
   actions: {
     setCodeVerifier(codeVerifier) {
-      localStorage.setItem('MyStatsCodeVerifier', codeVerifier);
+      localStorage.setItem('LaraVueCodeVerifier', codeVerifier);
     },
 
     getCodeVerifier() {
-      return localStorage.getItem('MyStatsCodeVerifier');
+      return localStorage.getItem('LaraVueCodeVerifier');
     },
 
     setAuthData(authData) {
-      localStorage.setItem('MyStatsAuthData', JSON.stringify(authData));
+      localStorage.setItem('LaraVueAuthData', JSON.stringify(authData));
     },
 
     getAuthData() {
-      return JSON.parse(localStorage.getItem('MyStatsAuthData'));
+      return JSON.parse(localStorage.getItem('LaraVueAuthData'));
     },
 
     clearAuthData() {
-      localStorage.removeItem('MyStatsAuthData');
+      localStorage.removeItem('LaraVueAuthData');
     },
 
     getUserAccessToken() {

@@ -1,5 +1,9 @@
 import { createApp } from 'vue'
+
+// CSS
 import './style.css'
+import '@mdi/font/css/materialdesignicons.css'
+
 import router from './router'
 import App from './App.vue'
 import { pinia } from './stores'

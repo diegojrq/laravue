@@ -18,7 +18,7 @@
         </p>
         <br/>
         <p>
-          This project serves as a foundational template for my other projects, featuring a <strong>seamless integration of Laravel and Vue.js.</strong> It includes a <strong>basic authentication</strong> system with a login form, registration form, a home page and some other features. Users can log in with their email and password, or register by providing their name, email, and password. After logging in, users are redirected to the home page, where they are greeted with a welcome message and a brief overview of the project.
+          This project serves as a foundational template for my other projects, featuring a <strong>seamless integration of Laravel and Vue.js.</strong> It includes a <strong>basic authentication</strong> system with a login form, registration form, a home page and some other features. Users can log in with their email and password, or register by providing their name, email, and password. After logging in, users are redirected to the home page, where they are greeted with an overview of the project.
         </p>
         <br/>
         <p>
@@ -26,7 +26,7 @@
         </p>
         <br/>
         <p>
-          Este projeto serve como um modelo fundamental para meus outros projetos, apresentando uma <strong>integração perfeita entre Laravel e Vue.js.</strong> Inclui um sistema de <strong>autenticação básica</strong> com um formulário de login, um formulário de registro, uma página inicial e algumas outras funcionalidades. Os usuários podem fazer login com seu e-mail e senha ou se registrar fornecendo seu nome, e-mail e senha. Após o login, os usuários são redirecionados para a página inicial, onde são recebidos com uma mensagem de boas-vindas e uma breve visão geral do projeto.
+          Este projeto serve como um modelo fundamental para meus outros projetos, apresentando uma <strong>integração perfeita entre Laravel e Vue.js.</strong> Inclui um sistema de <strong>autenticação básica</strong> com um formulário de login, um formulário de registro, uma página inicial e algumas outras funcionalidades. Os usuários podem fazer login com seu e-mail e senha ou se registrar fornecendo seu nome, e-mail e senha. Após o login, os usuários são redirecionados para a página inicial, onde são recebidos com uma visão geral do projeto.
         </p>
       </div>
     </div>
@@ -52,6 +52,13 @@ export default {
     },
   }),
 
+  created() {
+    const authStore = useAuthStore();
+    if (authStore.isAuthenticated()) {
+      this.$router.push({ name: 'home' });
+    }
+  },
+
   methods: {
 
     login() {
@@ -65,13 +72,11 @@ export default {
           }
 
           authStore.setAuthData(authData);
-
-          this.sendAlert('Bem vindo, meu nobre!', '', 'success')
-          this.$router.push({ name: 'index' });
+          this.$router.push({ name: 'home' });
         }
       }).catch((error) => {        
         if (error.response.status == 401) {
-          this.sendAlert('Erro na autenticação!', 'E-mail e/ou senha incorretos. Verifique suas credenciais e tente novamente.', 'warning')
+          this.sendAlert('Authentication failed!', ['Invalid email or password. Check your credentials and try again.'], 'danger');
         }
       });
     },
@@ -86,6 +91,8 @@ export default {
   display: flex;
   flex-wrap: wrap; /* Ensures the layout is responsive */
   margin-top: 16%;  
+  width: 80%;
+  margin: 12% auto;
 }
 
 .column {
@@ -97,6 +104,8 @@ export default {
   
   .container {
     flex-direction: column; /* Stacks columns vertically */
+    width: 100%;
+    margin: 16% auto;
     margin-bottom: 20%;
   }
   
