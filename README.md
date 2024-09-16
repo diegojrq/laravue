@@ -5,7 +5,7 @@ This always-evolving project is a basic showcase of my skills and a foundation f
 
 Feel free to explore the features and technologies used in this project. If you have any questions or feedback, please don't hesitate to reach out.
 
-## __frontend stack
+### __frontend stack
 
 > Vue 3;
 > Vuetify for beautiful UI components;
@@ -15,7 +15,7 @@ Feel free to explore the features and technologies used in this project. If you 
 > Vue Router for routing;
 > Vue moment for date formatting.
 
-## __backend stack
+### __backend stack
 
 > Laravel 11;
 > Laravel Passport for authentication management using OAut2;
