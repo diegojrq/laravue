@@ -10,17 +10,27 @@ Feel free to explore the features and technologies used in this project. If you 
 > Vue 3;
 
 > Vuetify for beautiful UI components;
+
 > Vuelidate for form validations;
+
 > Axios for HTTP requests;
+
 > Pinia for state management;
+
 > Vue Router for routing;
+
 > Vue moment for date formatting.
 
 ### __backend stack
 
 > Laravel 11;
+
 > Laravel Passport for authentication management using OAut2;
+
 > RESTful API architecture;
+
 > PostgreSQL database (for the sample);
+
 > Form Request for nice validations;
+
 > Services for business logic.
