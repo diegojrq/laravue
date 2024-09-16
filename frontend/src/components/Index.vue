@@ -67,7 +67,8 @@ export default {
 
           const authStore = useAuthStore();
           let authData = {
-            user: response.data.data.user,
+            name: response.data.data.name,
+            email: response.data.data.email,
             token: response.data.data.token,
           }
 
