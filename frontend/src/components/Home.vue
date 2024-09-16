@@ -50,6 +50,7 @@
           <li><strong>Axios</strong> for HTTP requests.</li>
           <li><strong>Pinia</strong> for state management.</li>
           <li><strong>Vue Router</strong> for routing.</li>
+          <li><strong>Vue moment</strong> for date formatting.</li>
         </ul>
       </div>
     </div>

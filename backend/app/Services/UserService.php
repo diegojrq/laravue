@@ -10,12 +10,40 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UserService
 {
-    private UserRepository $UserRepository;
+    private UserRepository $userRepository;
 
     public function __construct(
-        UserRepository $UserRepository,
+        UserRepository $userRepository,
     ) {
-        $this->UserRepository = $UserRepository;
+        $this->userRepository = $userRepository;
+    }
+
+    public function searchPaginate(array $filters = null, $limit = null, array $sort = null)
+    {
+        return $this->userRepository->searchPaginate($filters, $limit, $sort);        
+    }
+
+    public function getUser(int $id): JsonResponse
+    {
+        try {
+            $user = $this->userRepository->find($id);
+            return response()->json(
+                [
+                    'user' => $user
+                ],
+                Response::HTTP_OK
+            );
+        } catch (ModelNotFoundException $e) {
+            return response()->json(
+                [
+                    'error' => [
+                        'title' => __('messages.not_found'),
+                        'message' => __('messages.not_found', ['model' => User::class])
+                    ]
+                ],
+                Response::HTTP_NOT_FOUND
+            );
+        }
     }
 
     public function register($request): JsonResponse
@@ -98,7 +126,7 @@ class UserService
 
     public function all($request): JsonResponse
     {
-        $users = $this->UserRepository->all($request->all());
+        $users = $this->userRepository->all($request->all());
         //return response()->json($users, Response::HTTP_OK);
 
         return response()->json(

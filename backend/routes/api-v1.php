@@ -11,5 +11,6 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/refresh', [AuthController::class, 'refreshToken']);
 
 Route::controller(UserController::class)->group(function () {
+    Route::get('users/users-paginate', [UserController::class, 'searchPaginate']);
     Route::resource('users', UserController::class)->middleware('auth:api');
 });

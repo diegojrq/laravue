@@ -15,6 +15,7 @@
     "pinia": "^2.2.2",
     "vue": "^3.4.37",
     "vue-loading-overlay": "^6.0.6",
+    "vue-moment": "^4.1.0",
     "vue-router": "^4.4.3",
     "vuetify": "^3.7.1"
   },

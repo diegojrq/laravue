@@ -1,66 +1,134 @@
 <template>
+  <div class="container">
+    <v-card
+      color="#333"      
+      title="Users Management"
+      subtitle="Refine your search"
+      :elevation="2"
+    >
+      <v-card-item>
+        <v-row>
+          <v-col cols="12" md="4">
+            <v-text-field
+            label="E-mail"
+            clearable
+            @keyup.enter="filtrar(page, itemsPerPage, sortBy)"
+            v-model="filter.email"                            
+            :hide-details="true"
+            ></v-text-field>
+          </v-col>      
+          <v-col cols="12" md="8">
+            <v-text-field
+              label="Name"
+              clearable
+              @keyup.enter="filtrar(page, itemsPerPage, sortBy)"
+              v-model="filter.name"                            
+              :hide-details="true"              
+            ></v-text-field>
+          </v-col>        
+        </v-row>
+      </v-card-item>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn
+          class="mr-2"
+          color="error"
+          variant="flat"
+          prepend-icon="mdi-filter-remove-outline"          
+          @click="limparFilter()"
+        >
+          Clear
+        </v-btn>        
+        <v-btn
+          class="mr-2"
+          color="primary"
+          prepend-icon="mdi-filter"
+          variant="flat"
+          @click="filtrar(page, itemsPerPage, sortBy)"
+        >
+          Filter
+        </v-btn>
+      </v-card-actions>
+    </v-card>
 
-  usuarios
+    <v-expansion-panels
+      class="mt-4"
+    >
+      <v-expansion-panel
+        rounded        
+        >
+        <v-expansion-panel-title
+          color="#333"
+          bg-color="primary"
+        >
+          <v-icon>mdi-information-outline</v-icon>
+          &nbsp;Feature info
+        </v-expansion-panel-title>
+        <v-expansion-panel-text>
+          <p>
+            Using <strong>pagination</strong> to display the users. See backend code for more details. 
+          </p>
+          <p>
+            Users are created through the <strong>factory ( --seed )</strong> and the register/login feature.
+          </p>
+          <p>
+            <strong>Approximated search by name</strong> and <strong>email</strong>. See backend code for more details.
+          </p>
+          <p>
+            You can't add users here because after the seeder runs, it can only be created through the register/login feature.
+          </p>
 
-  <ul>
-    <li v-for="user in users">
-      {{ user.name }}
-    </li>
-  </ul>
-  <v-data-table-server
-        v-model:items-per-page="itemsPerPage"      
-        :headers="headers"
-        :items-length="totalItems"
-        :items="users"
-        :loading="loading"
-        loading-text="Carregando..."
-        no-data-text="Nenhum registro encontrado =\"
-        items-per-page-text="Itens por página:"
-        @update:options="filtrar"
-      >
-        
-        <template v-slot:item.status="{ item }">
-          <v-chip
-            v-if="item.status_id === 1"
-            small
-            outlined
-            color="error"
-            >
-            Aguardando resgate
-          </v-chip>
-          <v-chip
-            v-else
-            small
-            outlined
-            color="success"
-          >
-            Entregue
-          </v-chip>
-        </template>
+        </v-expansion-panel-text>          
+      </v-expansion-panel>
+    </v-expansion-panels>
 
-        <template v-slot:item.actions="{ item }">
-        
-          
+    <v-data-table-server
+      v-model:items-per-page="itemsPerPage"      
+      :headers="headers"
+      :items-length="totalItems"
+      :items="users"
+      :loading="loading"
+      loading-text="Loading..."
+      no-data-text="No data available =\"
+      items-per-page-text="Items per page:"
+      @update:options="filtrar"
+    >
+      <template v-slot:item.actions="{ item }">
 
-        </template>
-    
-      </v-data-table-server>
-  
+        <v-tooltip            
+          location="top"
+          text="View"
+        >
+          <template v-slot:activator="{ props }">
+            <v-btn
+              class="mr-1"
+              v-bind="props"
+              density="comfortable"
+              icon="mdi-magnify"
+              color="primary"
+              :to="{ name: 'view-user', params: { user: item.id } }"
+            />
+          </template>
+        </v-tooltip>
+
+      </template>
+
+    </v-data-table-server>
+  </div>
 </template>
 
 <script>
 
-import { getUsers } from '@/services/user.service';
+import { getUsersPaginate } from '@/services/user.service';
 
 export default {
 
   mixins: [],
 
   data: () => ({
-    filtro: {
-        cpf_trabalhador: null,
-        nome: null,
-        status_id: 1,
+    filter: {
+      name: null,
+      email: null,
     },
 
     itemsPerPage: 10,
@@ -68,18 +136,15 @@ export default {
     sortBy: ['id'],
     headers: [
       { title: 'ID', key: 'id', align: 'end' },
-      { title: 'Nome', key: 'name', align: 'start' },      
-      { title: 'Ações', key: 'actions', align: 'end', sortable: false },
+      { title: 'E-mail', key: 'email', align: 'start' },   
+      { title: 'Name', key: 'name', align: 'start' },
+      { title: 'Actions', key: 'actions', align: 'end', sortable: false },
     ],
 
     users: [],
     loading: true,
     totalItems: 0,
   }),
-
-  mounted() {
-    
-  },
 
   methods: {
 
@@ -91,42 +156,31 @@ export default {
       page ? this.page = page : page;
       sortBy ? this.sortBy = sortBy : sortBy;
 
-      getUsers().then((response) => {
-        this.users = response.data.users;
+      getUsersPaginate(this.page, this.itemsPerPage, this.sortBy, this.filter).then((response) => {
         this.loading = false;
+        this.users = response.data.data;
         this.totalItems = response.data.total;
       });
-
-      /*
-      getUsuariosPaginate(this.page, this.itemsPerPage, this.sortBy, this.filtro)
-        .then(response => {
-          this.loading = false;
-          this.usuarios = response.data.data;
-          this.totalItems = response.data.total;
-        });
-        */
     },
 
-    limparFiltro() {
+    limparFilter() {
 
-      this.filtro = {
-        cpf: null,
-        nome: null,
-        status: true,
-        role_id: null,
+      this.filter = {
+        name: null,
+        email: null,
       };
 
       this.filtrar(this.page, this.itemsPerPage, this.sortBy);
     },
 
     deleteItem(item) {
-      if (confirm('Deseja realmente excluir este registro?')) {
+      if (confirm('Do you really want to delete this item?')) {
         
         let promise = deleteUsuario(item.id);
 
         promise.then(response => {
           
-          this.sendAlert('Sucesso!', response.data.success.message, 'success')
+          this.sendAlert('Success!', response.data.success.message, 'success')
           this.filtrar(this.page, this.itemsPerPage, this.sortBy);          
 
         }).catch(error => this.handleError(error))
@@ -136,3 +190,46 @@ export default {
 }
 
 </script>
+
+<style scoped>
+
+.container {
+  position: relative;
+  left: 2%;
+  padding: 2%; 
+ 
+  width: 96%;  
+  margin: 0 auto;
+  margin-top: 6%;  
+  margin-bottom: 6%;
+}
+
+/* Responsive layout for screens narrower than 600px */
+@media (max-width: 600px) {
+  
+  .container {
+    width: 100%;
+    padding: 3%; 
+    left: 0;
+    margin: 16% auto;
+    margin-top: 2%; 
+  }
+
+  .second-container {
+    flex-direction: column; /* Stacks columns vertically */
+    width: 100%;
+    margin-bottom: 20%; 
+  }
+
+  .container {
+    flex-direction: column; /* Stacks columns vertically */
+    width: 100%;
+    margin: 16% auto;    
+  }
+  
+  .column {
+    flex-basis: 100%; /* Each column takes full width */
+  }
+}
+
+</style>

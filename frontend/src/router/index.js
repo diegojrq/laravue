@@ -87,7 +87,15 @@ const routes = [
             component: () => import('@/views/admin/users/Users.vue'),
           },          
         ],
-      },      
+      },
+      {
+        path: 'view/:user',
+        name: 'view-user',
+        meta: {
+          requiresAuth: true,
+        },
+        component: () => import('@/views/admin/users/User.vue'),
+      },
     ],
   },
 ]

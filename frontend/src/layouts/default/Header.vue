@@ -1,8 +1,7 @@
 <template>
   <header>
     <v-app-bar
-      color="#333"
-      
+      color="#333"      
     >
       <v-app-bar-nav-icon v-if="$vuetify.display.mobile" variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>

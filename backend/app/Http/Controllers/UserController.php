@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Services\UserService;
 use App\Http\Requests\UserRequest;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -20,6 +21,11 @@ class UserController extends Controller
         return $this->userService->all($request);
     }
 
+    public function searchPaginate(Request $request)
+    {
+        return $this->userService->searchPaginate($request->filters, $request->limit, $request->sort);
+    }
+
     public function register(Request $request): JsonResponse
     {
         return $this->userService->register($request);
@@ -32,7 +38,7 @@ class UserController extends Controller
 
     public function show(int $id): JsonResponse
     {
-        return $this->userService->getUserById($id);
+        return $this->userService->getUser($id);        
     }
 
     public function update(UserRequest $request, int $id): JsonResponse

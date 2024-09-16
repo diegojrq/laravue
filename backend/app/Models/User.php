@@ -68,4 +68,17 @@ class User extends Authenticatable
             'password.confirmed' => 'Passwords do not match'
         ];
     }
+
+    public static function deafultSortAttribute(): string
+    {
+        return 'name';
+    }
+
+    public static function likeSearchAttributes(): array
+    {
+        return [
+            'name',
+            'email',
+        ];
+    }
 }
