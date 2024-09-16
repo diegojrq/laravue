@@ -40,8 +40,10 @@ Feel free to explore the features and technologies used in this project. If you 
 
 ### _features
 
-*__login:* Secure and user-friendly login process, ensuring that access to user accounts is both seamless and protected.
-*__register:* An intuitive registration flow, making it easy for new users to join. Lacks some features as password recovery and e-mail confirmation.
-*__logout:* Users can safely log out, ensuring their account security is upheld. You can touch the navigation menu icon to open the drawer and click on the logout button.
-*__home:* The home page serves as the central hub of our application, offering users an informative starting point for their navigation.
-*__users:* A dedicated section for user management, allowing for the viewing and editing of user profiles.
+
+**__login:** Secure and user-friendly login process, ensuring that access to user accounts is both seamless and protected.
+
+**__register:** An intuitive registration flow, making it easy for new users to join. Lacks some features as password recovery and e-mail confirmation.
+**__logout:** Users can safely log out, ensuring their account security is upheld. You can touch the navigation menu icon to open the drawer and click on the logout button.
+**__home:** The home page serves as the central hub of our application, offering users an informative starting point for their navigation.
+**__users:** A dedicated section for user management, allowing for the viewing and editing of user profiles.
