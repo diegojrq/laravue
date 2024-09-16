@@ -8,6 +8,7 @@ Feel free to explore the features and technologies used in this project. If you 
 ### __frontend stack
 
 > Vue 3;
+
 > Vuetify for beautiful UI components;
 > Vuelidate for form validations;
 > Axios for HTTP requests;
