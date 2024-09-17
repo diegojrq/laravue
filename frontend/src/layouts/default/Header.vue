@@ -2,11 +2,12 @@
   <header>
     <v-app-bar
       color="#333"      
-    >
-      <v-app-bar-nav-icon v-if="$vuetify.display.mobile" variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    >      
       <v-toolbar-title>
         LaraVue
       </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-app-bar-nav-icon v-if="$vuetify.display.mobile" variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>
     <v-navigation-drawer
       v-model="drawer"

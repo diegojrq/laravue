@@ -62,7 +62,7 @@
         <br/>
         <ul class="stack-list">
           <li><strong>Laravel 11</strong></li>
-          <li><strong>Laravel Passport</strong> for authentication management using OAut2.</li>
+          <li><strong>Laravel Passport</strong> for authentication management using OAuth2.</li>
           <li><strong>RESTful API</strong> architecture.</li>
           <li><strong>PostgreSQL</strong> database.</li>
           <li><strong>Form Request</strong> for nice validations.</li>
