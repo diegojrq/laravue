@@ -64,10 +64,15 @@
           &nbsp;Feature info
         </v-expansion-panel-title>
         <v-expansion-panel-text>
-          <p>
-            Using <strong>vue-moment</strong> to format dates. 
-          </p>
-        </v-expansion-panel-text>          
+          <v-list dense>
+            <v-list-item>
+              <v-list-item-content>
+                <v-list-item-title>Vue Moment</v-list-item-title>
+                <v-list-item-subtitle>For date formatting and manipulation.</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-expansion-panel-text>
       </v-expansion-panel>
     </v-expansion-panels>
     <div class="d-flex my-4">

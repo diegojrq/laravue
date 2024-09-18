@@ -65,19 +65,14 @@
           &nbsp;Feature info
         </v-expansion-panel-title>
         <v-expansion-panel-text>
-          <p>
-            Using <strong>pagination</strong> to display the users. See backend code for more details. 
-          </p>
-          <p>
-            Users are created through the <strong>factory ( --seed )</strong> and the register/login feature.
-          </p>
-          <p>
-            <strong>Approximated search by name</strong> and <strong>email</strong>. See backend code for more details.
-          </p>
-          <p>
-            You can't add users here because after the seeder runs, it can only be created through the register/login feature.
-          </p>
-
+          <v-list dense>
+            <v-list-item v-for="(item, index) in feature_list" :key="index">
+              <v-list-item-content>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+                <v-list-item-subtitle>{{ item.subtitle }}</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
         </v-expansion-panel-text>          
       </v-expansion-panel>
     </v-expansion-panels>
@@ -130,6 +125,13 @@ export default {
       name: null,
       email: null,
     },
+
+    feature_list: [
+      { title: 'Pagination', subtitle: 'Using pagination to display the users. See backend code for more details.' },
+      { title: 'Users', subtitle: 'Users are created through the factory ( --seed ) and the register/login feature.' },
+      { title: 'Search', subtitle: 'Approximated search by name and email. See backend code for more details.' },
+      { title: 'Add', subtitle: 'You can\'t add users here because after the seeder runs, it can only be created through the register/login feature.' },
+    ],
 
     itemsPerPage: 10,
     page: 1,
