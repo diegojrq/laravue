@@ -1,13 +1,13 @@
 <template>
   <header>
-    <v-app-bar
-      color="#333"      
-    >      
-      <v-toolbar-title>
-        LaraVue
-      </v-toolbar-title>
+    <v-app-bar color="#333">
+      <v-toolbar-title> LaraVueD </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-app-bar-nav-icon v-if="$vuetify.display.mobile" variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        v-if="$vuetify.display.mobile"
+        variant="text"
+        @click.stop="drawer = !drawer"
+      ></v-app-bar-nav-icon>
     </v-app-bar>
     <v-navigation-drawer
       v-model="drawer"
@@ -18,19 +18,28 @@
       <v-list>
         <v-list-item
           prepend-avatar="https://randomuser.me/api/portraits/women/85.jpg"
-          :subtitle=this.user_email
-          :title=this.user_name
+          :subtitle="this.user_email"
+          :title="this.user_name"
         ></v-list-item>
       </v-list>
       <v-divider></v-divider>
       <v-list density="compact" nav>
-        <v-list-item prepend-icon="mdi-home" title="Home" value="home"
+        <v-list-item
+          prepend-icon="mdi-home"
+          title="Home"
+          value="home"
           @click="() => $router.push({ name: 'home' })"
         ></v-list-item>
-        <v-list-item prepend-icon="mdi-account-multiple" title="Users" value="users"
+        <v-list-item
+          prepend-icon="mdi-account-multiple"
+          title="Users"
+          value="users"
           @click="() => $router.push({ name: 'users' })"
         ></v-list-item>
-        <v-list-item prepend-icon="mdi-logout" title="Logout" value="logout"
+        <v-list-item
+          prepend-icon="mdi-logout"
+          title="Logout"
+          value="logout"
           @click="() => $router.push({ name: 'logout' })"
         ></v-list-item>
       </v-list>
@@ -39,18 +48,16 @@
 </template>
 
 <script>
-
-import { useAuthStore } from '@/stores/auth';
+import { useAuthStore } from "@/stores/auth";
 
 export default {
-
   data: () => ({
     drawer: true,
     items: [
-      { title: 'Home', icon: 'mdi-home', link: '/' },
-      { title: 'Login', icon: 'mdi-login', link: '/login' },
-      { title: 'Register', icon: 'mdi-account-plus', link: '/register' },
-      { title: 'Logout', icon: 'mdi-logout', link: '/logout' },
+      { title: "Home", icon: "mdi-home", link: "/" },
+      { title: "Login", icon: "mdi-login", link: "/login" },
+      { title: "Register", icon: "mdi-account-plus", link: "/register" },
+      { title: "Logout", icon: "mdi-logout", link: "/logout" },
     ],
   }),
 
@@ -60,5 +67,4 @@ export default {
     this.user_email = authStore.getAuthData().email;
   },
 };
-
 </script>

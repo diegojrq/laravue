@@ -57,6 +57,9 @@ export default {
     if (authStore.isAuthenticated()) {
       this.$router.push({ name: 'home' });
     }
+
+    this.form.email = 'jhon.doe@test.com';
+    this.form.password = 'password';
   },
 
   methods: {

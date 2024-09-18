@@ -1,21 +1,19 @@
 
-# diegojrq's LaraVue
+# diegojrq's LaraVueD
 
-diegojrq's LaraVue: A Modern Web Application Blending Laravel & Vue.js
+diegojrq's LaraVueD: A Modern Web Application Blending Laravel & Vue.js
 
-diegojrq's LaraVue stands as a testament to modern web development practices, combining the robust backend capabilities of Laravel with the dynamic and responsive frontend provided by Vue.js. This project serves not only as a showcase of my technical skills but also as a versatile foundation for future web applications. It's a living project, constantly evolving to incorporate the latest advancements in web technology.
+diegojrq's LaraVueD stands as a testament to modern web development practices, combining the robust backend capabilities of Laravel with the dynamic and responsive frontend provided by Vue.js. This project serves not only as a showcase of my technical skills but also as a versatile foundation for future web applications. It's a living project, constantly evolving to incorporate the latest advancements in web technology.
 
 Feel free to explore the features and technologies used in this project. If you have any questions or feedback, please don't hesitate to reach out.
 
-Please note that diegojrq's LaraVue project is entirely independent and has no affiliation with the project found at https://doc.laravue.dev/. While both projects leverage the powerful combination of Laravel and Vue.js for web development, they are developed by different authors and serve distinct purposes.
-
 ## Live Demo
 
-[Live Demo](https://laravue.diegoqueiroz.dev/)
+[Live Demo](https://laravued.diegoqueiroz.dev/)
 
 ### __frontend stack
 
-The frontend of diegojrq's LaraVue is powered by Vue 3, the progressive JavaScript framework known for its reactivity, component-based architecture, and ease of integration. This choice ensures a seamless user experience, with a dynamic interface that's both fast and responsive. Key technologies and tools used in the frontend include:
+The frontend of diegojrq's LaraVueD is powered by Vue 3, the progressive JavaScript framework known for its reactivity, component-based architecture, and ease of integration. This choice ensures a seamless user experience, with a dynamic interface that's both fast and responsive. Key technologies and tools used in the frontend include:
 
 - **Vite** offers a faster and leaner development experience, significantly improving the speed of development cycles;
 - **Vuetify** for UI components that are both beautiful and functional, ensuring the application is aesthetically pleasing and user-friendly. I'm not a great frontend developer as you can see, so, thanks Vuetify =)
@@ -27,7 +25,7 @@ The frontend of diegojrq's LaraVue is powered by Vue 3, the progressive JavaScri
 
 ### __backend stack
 
-On the backend, diegojrq's LaraVue utilizes Laravel, a PHP framework known for its elegant syntax, robust features, and scalability. Laravel's comprehensive ecosystem and powerful tools streamline the development process, from routing and authentication to caching and session management. This project leverages Laravel to create a secure, efficient, and maintainable backend, capable of supporting complex web applications through an API.
+On the backend, diegojrq's LaraVueD utilizes Laravel, a PHP framework known for its elegant syntax, robust features, and scalability. Laravel's comprehensive ecosystem and powerful tools streamline the development process, from routing and authentication to caching and session management. This project leverages Laravel to create a secure, efficient, and maintainable backend, capable of supporting complex web applications through an API.
 
 - **Laravel Passport** for authentication management using OAuth2;
 - **RESTful API** architecture embracing the principles of REST (Representational State Transfer), the backend is designed to ensure stateless communication and standard methods, enhancing scalability and simplicity;
